@@ -1,5 +1,7 @@
 import { createSignal } from "solid-js";
-import Card from "./components/Card.jsx";
+import { Routes, Route, A } from "@solidjs/router";
+import Home from "./pages/Home.jsx";
+import Cart from "./pages/Cart.jsx";
 function App() {
     const [darkTheme, setDarkTheme] = createSignal(false);
     function toggleTheme() {
@@ -16,30 +18,16 @@ function App() {
                     class="material-symbols-outlined cursor-pointer"
                     onClick={toggleTheme}
                 >light_mode</span>
+                <A href="/">Home</A>
+                <A href="/cart">Cart</A>
             </header>
             <div class="w-full h-24 bg-blue-800">
-                <h1 class="text-white text-7xl">merch store</h1>
+                <h1 class="text-white text-7xl"></h1>
             </div>
-            <div class="grid grid-cols-4 gap-10 my-4">
-                <Card rounded={true} flat={false} >
-                    <h1>Ninja Tee, Black</h1>
-                    <button class="btn">View</button>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                    <p>399</p>
-                </Card>
-                <Card rounded={true} flat={false} >
-                    <h1>Ninja Tee, Black</h1>
-                    <button class="btn">View</button>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                    <p>399</p>
-                </Card>
-                <Card rounded={true} flat={false} >
-                    <h1>Ninja Tee, White</h1>
-                    <button class="btn">View</button>
-                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-                    <p>399</p>
-                </Card>
-            </div>
+            <Routes>
+                <Route path="/" component={Home} />
+                <Route path="/cart" component={Cart}></Route>
+            </Routes>
         </div>
     );
 }
