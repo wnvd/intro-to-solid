@@ -4,14 +4,18 @@ function App() {
     const width = window.innerWidth;
     return (
         // single root template
-        <div>
+        <div class="container m-auto">
             <header>
-                <h1>Merch Store</h1>
+                <h1 class="">Merch Store</h1>
             </header>
-            <img src={banner} alt="banner image" width={width} height="300" />
-            <Card />
-            <Card />
-            <Card />
+        <div class="w-full h-24 bg-blue-500">
+        </div>
+            <div class="grid grid-cols-4 gap-10 my-4">
+                <Card />
+                <Card />
+                <Card />
+                <Card />
+            </div>
         </div>
     );
 }
