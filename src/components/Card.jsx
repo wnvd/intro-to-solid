@@ -1,9 +1,9 @@
-export default function Card() {
+export default function Card(props) {
     return (
-        <div class="bg-white p-4 text-center rounded-md shadow-ms">
-            <h2>Card Component</h2>
-            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
-            <button class="btn">click me</button>
+        <div class="bg-white p-4 text-center"
+            classList={{ "rounded-md": props.rounded, "shadow-md": !props.flat }}
+        >
+        {props.children}
         </div>
     )
 }
