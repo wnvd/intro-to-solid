@@ -1,27 +1,27 @@
 import Card from "../components/Card.jsx";
+import { createResource } from "solid-js";
+
+const fetchProducts = async () => {
+    const res = await fetch('http://localhost:4000/products');
+
+    return res.json();
+}
 
 export default function Home() {
-    return (
-        <div class="grid grid-cols-4 gap-10 my-4">
-            <Card rounded={true} flat={false} >
-                <h1>Ninja Tee, Black</h1>
-                <button class="btn">View</button>
-                <p>It is a long established fact that a reader will be</p>
-                <p>399</p>
-            </Card>
-            <Card rounded={true} flat={false} >
-                <h1>Ninja Tee, Black</h1>
-                <button class="btn">View</button>
-                <p>It is a long established fact that a reader will</p>
-                <p>399</p>
-            </Card>
-            <Card rounded={true} flat={false} >
-                <h1>Ninja Tee, White</h1>
-                <button class="btn">View</button>
-                <p>It is a long established fact that a reader will be</p>
-                <p>399</p>
-            </Card>
-        </div>
+    const [products] = createResource(fetchProducts);
 
+    return (
+        <Show when={products()} fallback={<p>loading...</p>}>
+            <div class="grid grid-cols-4 gap-10 my-4">
+                <For each={products()}>
+                    {(product) => (
+                        <Card rounded={true} flat={true}>
+                            <img src={product.img} alt="prod img" />
+                            <h2 class="my-3 font-bold">{product.title}</h2>
+                        </Card>
+                    )}
+                </For>
+            </div>
+        </Show >
     )
 }
