@@ -2,6 +2,7 @@ import { createSignal } from "solid-js";
 import { Routes, Route, A } from "@solidjs/router";
 import Home from "./pages/Home.jsx";
 import Cart from "./pages/Cart.jsx";
+import Product from "./pages/Product.jsx";
 function App() {
     const [darkTheme, setDarkTheme] = createSignal(false);
     function toggleTheme() {
@@ -26,7 +27,8 @@ function App() {
             </div>
             <Routes>
                 <Route path="/" component={Home} />
-                <Route path="/cart" component={Cart}></Route>
+                <Route path="/cart" component={Cart} />
+                <Route path="/products/:id" component={Product} />
             </Routes>
         </div>
     );
